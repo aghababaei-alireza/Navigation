@@ -1,0 +1,14 @@
+<launch>
+
+    <!-- Arguments -->
+    <arg name = "Robot_Width" default = "0.3"/>
+    <arg name = "FromTopic" default = "/map"/>
+    <arg name = "ToTopic" default = "/modified_map"/>
+
+    <!-- Main node -->
+    <node pkg = "map_blurring" type = "map_blurring" name = "map_blurring" respawn = "true" output = "screen">
+        <param name = "Robot_Width" value = "$(arg Robot_Width)"/>
+        <param name = "FromTopic" value = "$(arg FromTopic)"/>
+        <param name = "ToTopic" value = "$(arg ToTopic)"/>
+    </node>
+</launch>

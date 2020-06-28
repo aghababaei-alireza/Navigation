@@ -1,0 +1,4 @@
+navigation_msgs/Vector3 targetPos
+---
+navigation_msgs/Vector3[] plan
+bool success

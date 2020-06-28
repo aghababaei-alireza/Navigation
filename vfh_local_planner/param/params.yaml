@@ -1,0 +1,5 @@
+VFH_Local_Planner:
+  CellSize    : 0.1
+  WindowSize  : 33
+  S_max       : 54
+  Threshold   : 0.1

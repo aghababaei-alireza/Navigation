@@ -1,0 +1,15 @@
+<stack>
+    <name>Navigation</name>
+    <version>0.1.1</version>
+    <description brief = "2D navigation stack for mobile robots">
+        A 2D navigation stack that takes in information from odometry, sensor streams, and a goal pose and outputs velocity commands that are sent to a mobile base.
+    </description>
+    <author email = "aghababaei1375@gmail.com">
+        Alireza Aghababaei
+    </author>
+    <maintainer email = "aghababaei1375@gmail.com">
+        Alireza Aghababaei
+    </maintainer>
+    <license>BSD</license>
+    <copyright>Copyright (c) 2020, Isfahan University of Technology(IUT)</copyright>
+</stack>

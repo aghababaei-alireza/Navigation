@@ -1,0 +1,27 @@
+DWA_Local_Planner:
+#Time interval
+    dt : 0.2
+#specifications of the robot determined in datasheet
+    max_linear_velocity : 0.26
+    max_angular_velocity : 1.82
+
+    linear_acceleration : 1.0
+    linear_deceleration : 1.0
+    angular_acceleration : 1.0
+    angular_deceleration : 1.0
+
+    robot_width : 0.35
+
+#Sampling data
+    linear_velocity_samples : 10
+    angular_velocity_samples : 10
+    angle_samlpes : 5
+    line_samples : 6
+    sl : 3.5
+
+#Objective function coefficients
+    alpha : 0.7
+    beta : 0.2
+    gamma : 0.1
+
+    

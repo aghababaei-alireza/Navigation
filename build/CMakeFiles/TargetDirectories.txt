@@ -1,0 +1,2 @@
+/home/alireza/catkin_ws/src/Navigation/build/CMakeFiles/rebuild_cache.dir
+/home/alireza/catkin_ws/src/Navigation/build/CMakeFiles/edit_cache.dir

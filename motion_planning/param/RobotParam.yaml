@@ -1,0 +1,5 @@
+Robot : 
+  Robot_Width : 0.3
+  V_max       : 0.26
+  V_min       : 0.01
+  Omega_max   : 1.82

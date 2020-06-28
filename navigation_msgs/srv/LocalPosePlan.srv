@@ -1,0 +1,3 @@
+navigation_msgs/Vector3[] posePlan
+---
+bool success

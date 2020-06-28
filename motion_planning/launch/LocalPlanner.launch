@@ -1,0 +1,13 @@
+<launch>
+    <!-- Arguments -->
+    <arg name = "LocalPlanningMethod" default = "vfh"/>
+    <arg name = "LoadParams" default = "true"/>
+
+    <!-- Local Planner Node -->
+    <node pkg = "motion_planning" type = "LocalPlanner" name = "LocalPlanner" respawn = "false" output = "screen">
+        <param name = "LocalPlanningMethod" value = "$(arg LocalPlanningMethod)"/>
+        <rosparam file = "$(find motion_planning)/param/names.yaml" command = "load"/>
+        <rosparam file = "$(find motion_planning)/param/RobotParam.yaml" command = "load"/>
+        <rosparam file = "$(eval find(arg('LocalPlanningMethod')+'_local_planner')+'/param/params.yaml')" command = "load" if = "$(arg LoadParams)"/>
+    </node>
+</launch>

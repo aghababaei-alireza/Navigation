@@ -1,0 +1,10 @@
+<launch>
+    <!-- Arguments -->
+    <arg name = "GlobalPlanningMethod" default = "astar"/>
+
+    <!-- Global Planner Node -->
+    <node pkg = "motion_planning" type = "GlobalPlanner" name = "GlobalPlanner" respawn = "true" output = "screen">
+        <param name = "GlobalPlanningMethod" value = "$(arg GlobalPlanningMethod)"/>
+        <rosparam file = "$(find motion_planning)/param/names.yaml" command = "load"/>
+    </node>
+</launch>

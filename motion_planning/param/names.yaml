@@ -1,0 +1,5 @@
+Global_Service_name : /GlobalPlannerService
+Local_Service_name  : /LocalPlannerService
+Odometry_Topic_name : /odom
+Laser_Topic_name    : /scan
+Velocity_Topic_name : /cmd_vel
