@@ -59,6 +59,8 @@ namespace navigation_core{
         std::string global_service_name; /**<Name of Global planner service */
         std::string local_service_name; /**<Name of Local planner service */
         std::string odom_topic_name; /**<Name of Odometry topic */
+
+        std::string robot_namespace; /**<Namespace of the topics of the robot */
     };
 }
 

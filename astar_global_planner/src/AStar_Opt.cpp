@@ -2,12 +2,13 @@
 
 namespace global_planner
 {
-    AStar::AStar(navigation_msgs::Vector2 _gridWorldSize, double _nodeRad, navigation_msgs::Vector3 _worldBottomLeft, std::vector< std::vector<int> >& data)
+    AStar::AStar(navigation_msgs::Vector2 _gridWorldSize, double _nodeRad, navigation_msgs::Vector3 _worldBottomLeft, std::vector< std::vector<int> >& data, std::string _namespace)
         : grid(_gridWorldSize, _nodeRad, _worldBottomLeft, data)
     {
-        globalSrv = nh.advertiseService(global_service_name, &AStar::GlobalPlanCallback, this);
-        odomSub = nh.subscribe(odom_topic_name, 1, &AStar::OdometryCallback, this);
-        localClient = nh.serviceClient<navigation_msgs::LocalPosePlan>(local_service_name);
+        robot_namespace = _namespace;
+        globalSrv = nh.advertiseService(robot_namespace + global_service_name, &AStar::GlobalPlanCallback, this);
+        odomSub = nh.subscribe(robot_namespace + odom_topic_name, 1, &AStar::OdometryCallback, this);
+        localClient = nh.serviceClient<navigation_msgs::LocalPosePlan>(robot_namespace + local_service_name);
         ROS_INFO("AStar Initialized successfully.");
     }
 

@@ -23,8 +23,9 @@ namespace global_planner
          * @param _nodeRad Radius of each node
          * @param _worldBottomLeft Position of the lower left point of the grid
          * @param data 2D vector of integer data representing the occupancy information
+         * @param robot_namespace Namespace of the topics of the robot
          */
-        AStar(navigation_msgs::Vector2 _gridWorldSize, double _nodeRad, navigation_msgs::Vector3 _worldBottomLeft, std::vector< std::vector<int> >& data);
+        AStar(navigation_msgs::Vector2 _gridWorldSize, double _nodeRad, navigation_msgs::Vector3 _worldBottomLeft, std::vector< std::vector<int> >& data, std::string robot_namespace);
 
         /**
          * @brief Given a start pose and a goal pose in the world, compute an obstacle-free path

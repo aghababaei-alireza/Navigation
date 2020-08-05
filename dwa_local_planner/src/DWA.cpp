@@ -2,11 +2,12 @@
 
 namespace local_planner
 {
-    DWA::DWA(){
-        localSrv = nh.advertiseService(local_service_name, &DWA::LocalPlanCallback, this);
-        odomSub = nh.subscribe(odom_topic_name, 1, &DWA::OdometryCallback, this);
-        laserSub = nh.subscribe(laser_topic_name, 1, &DWA::LaserCallback, this);
-        velPub = nh.advertise<geometry_msgs::Twist>(velocity_topic_name, 1);
+    DWA::DWA(std::string _namespace){
+        robot_namespace = _namespace;
+        localSrv = nh.advertiseService(robot_namespace + local_service_name, &DWA::LocalPlanCallback, this);
+        odomSub = nh.subscribe(robot_namespace + odom_topic_name, 1, &DWA::OdometryCallback, this);
+        laserSub = nh.subscribe(robot_namespace + laser_topic_name, 1, &DWA::LaserCallback, this);
+        velPub = nh.advertise<geometry_msgs::Twist>(robot_namespace + velocity_topic_name, 1);
 
         private_nh.param("DWA_Local_Planner/dt", dt, 0.2);
         

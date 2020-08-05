@@ -14,12 +14,39 @@ void MapCallback(nav_msgs::OccupancyGrid msg){
     checkForSpin = true;
 }
 
+#define USAGE "Usage: \n" \
+              "  GlobalPlanner -h\n"\
+              "  GlobalPlanner [-n|--namespace <robot_namespace>]"
+
 int main(int argc, char** argv){
-    ros::init(argc, argv, "GlobalPlanner");
+    ros::init(argc, argv, "GlobalPlanner", ros::init_options::AnonymousName);
     ros::NodeHandle nh;
     ros::NodeHandle private_nh("~");
 
     ROS_INFO("Node %s Started.", ros::this_node::getName().c_str());
+
+    std::string _namespace = "";
+
+    for (int i = 1; i < argc; i++)
+    {
+        if (!strcmp(argv[i], "-h"))
+        {
+            puts(USAGE);
+            return 0;
+        }
+        
+        else if (!strcmp(argv[i], "-n") || !strcmp(argv[i], "--namespace"))
+        {
+            if(++i < argc)
+                _namespace = argv[i];
+            else
+            {
+                puts(USAGE);
+                return 1;
+            }
+        }
+    }
+    
 
     std::string mapTopic;
     private_nh.param("MapTopic", mapTopic, std::string("/map"));
@@ -55,7 +82,7 @@ int main(int argc, char** argv){
 
     if (planningMethod == "astar")
     {
-        planner = new global_planner::AStar(gridWorldSize, map.getResolution()/2.0, worldBottomLeft, map.data);
+        planner = new global_planner::AStar(gridWorldSize, map.getResolution()/2.0, worldBottomLeft, map.data, _namespace);
     }
     else
     {

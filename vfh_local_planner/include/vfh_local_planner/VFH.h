@@ -22,8 +22,9 @@ namespace local_planner
     public:
         /**
          * @brief Default constructor.
+         * @param robot_namespace Namespace of the topics of the robot
          */
-        VFH();
+        VFH(std::string _namespace);
 
         /**
          * @brief Given the current position, orientation, and velocity of the robot, compute velocity commands to send to the robot

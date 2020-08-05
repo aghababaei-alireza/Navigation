@@ -2,12 +2,13 @@
 
 namespace local_planner
 {
-    VFH::VFH(){
+    VFH::VFH(std::string _namespace){
         private_nh = ros::NodeHandle("~");
-        odomSub = nh.subscribe(odom_topic_name, 1, &VFH::OdometryCallback, this);
-        laserSub = nh.subscribe(laser_topic_name, 1, &VFH::LaserCallback, this);
-        velPub = nh.advertise<geometry_msgs::Twist>(velocity_topic_name, 1);
-        localSrv = nh.advertiseService(local_service_name, &VFH::LocalPlanCallback, this);
+        robot_namespace = _namespace;
+        odomSub = nh.subscribe(robot_namespace + odom_topic_name, 1, &VFH::OdometryCallback, this);
+        laserSub = nh.subscribe(robot_namespace + laser_topic_name, 1, &VFH::LaserCallback, this);
+        velPub = nh.advertise<geometry_msgs::Twist>(robot_namespace + velocity_topic_name, 1);
+        localSrv = nh.advertiseService(robot_namespace + local_service_name, &VFH::LocalPlanCallback, this);
         ROS_INFO("private_nh namespace: %s", private_nh.getNamespace().c_str());
         checkPose = false;
         checkLaser = false;

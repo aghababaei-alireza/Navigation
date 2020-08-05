@@ -16,7 +16,11 @@ namespace local_planner
 {
     class DWA : public navigation_core::BaseLocalPlanner{
     public:
-        DWA();
+        /**
+         * @brief Constructor of the class
+         * @param robot_namespace Namespace of the topics of the robot
+         */
+        DWA(std::string robot_namespace);
 
         /**
          * @brief local Planner Service Callback. Given a plan as a request, find velocity commands to move through that plan

@@ -3,13 +3,39 @@
 #include <vfh_local_planner/VFH.h>
 #include <dwa_local_planner/DWA.h>
 
+#define USAGE "Usage: \n" \
+              "  LocalPlanner -h\n"\
+              "  LocalPlanner [-n|--namespace <robot_namespace>]"
+
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "LocalPlanner");
+    ros::init(argc, argv, "LocalPlanner", ros::init_options::AnonymousName);
     ros::NodeHandle nh;
     ros::NodeHandle private_nh("~");
 
     ROS_INFO("Node %s Started.", ros::this_node::getName().c_str());
+
+    std::string _namespace = "";
+
+    for (int i = 1; i < argc; i++)
+    {
+        if (!strcmp(argv[i], "-h"))
+        {
+            puts(USAGE);
+            return 0;
+        }
+        
+        else if (!strcmp(argv[i], "-n") || !strcmp(argv[i], "--namespace"))
+        {
+            if(++i < argc)
+                _namespace = argv[i];
+            else
+            {
+                puts(USAGE);
+                return 1;
+            }
+        }
+    }
 
     std::string planningMethod;
     private_nh.param("LocalPlanningMethod", planningMethod, std::string("vfh"));
@@ -18,11 +44,11 @@ int main(int argc, char** argv)
 
     if (planningMethod == "vfh")
     {
-        planner = new local_planner::VFH();
+        planner = new local_planner::VFH(_namespace);
     }
     else if (planningMethod == "dwa")
     {
-        planner = new local_planner::DWA();
+        planner = new local_planner::DWA(_namespace);
     }
     else
     {

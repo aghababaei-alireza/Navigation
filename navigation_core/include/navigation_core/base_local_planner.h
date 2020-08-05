@@ -93,6 +93,8 @@ namespace navigation_core
         geometry_msgs::Twist currentVel; /**<Current velocity of the robot */
         geometry_msgs::Twist speed; /**<Speed to publish to velocity command topic */
         sensor_msgs::LaserScan laser; /**<Laser scanner data */
+
+        std::string robot_namespace; /**<Namespace of the topics of the robot */
     };
 } // namespace navigation_core
 
