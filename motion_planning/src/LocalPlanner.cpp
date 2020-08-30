@@ -1,7 +1,7 @@
 #include <ros/ros.h>
 #include <navigation_core/base_local_planner.h>
 #include <vfh_local_planner/VFH.h>
-#include <dwa_local_planner/DWA.h>
+#include <dwa__local_planner/DWA.h>
 
 #define USAGE "Usage: \n" \
               "  LocalPlanner -h\n"\
@@ -46,7 +46,7 @@ int main(int argc, char** argv)
     {
         planner = new local_planner::VFH(_namespace);
     }
-    else if (planningMethod == "dwa")
+    else if (planningMethod == "dwa_")
     {
         planner = new local_planner::DWA(_namespace);
     }

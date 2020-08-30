@@ -16,7 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
   nav_msgs
   astar_global_planner
   vfh_local_planner
-  dwa_local_planner
+  dwa__local_planner
 )
 
 ## System dependencies are found with CMake's conventions
@@ -111,7 +111,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
    INCLUDE_DIRS include
    LIBRARIES ${PROJECT_NAME}
-   CATKIN_DEPENDS geometry_msgs navigation_msgs roscpp std_msgs tf nav_msgs astar_global_planner vfh_local_planner dwa_local_planner
+   CATKIN_DEPENDS geometry_msgs navigation_msgs roscpp std_msgs tf nav_msgs astar_global_planner vfh_local_planner dwa__local_planner
 #  DEPENDS system_lib
 )
 

@@ -1,4 +1,4 @@
-#include <dwa_local_planner/DWA.h>
+#include <dwa__local_planner/DWA.h>
 
 namespace local_planner
 {
