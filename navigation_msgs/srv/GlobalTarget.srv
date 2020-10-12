@@ -1,4 +1,6 @@
 navigation_msgs/Vector3 targetPos
+bool distanceOnly
 ---
 navigation_msgs/Vector3[] plan
 bool success
+float64 distance

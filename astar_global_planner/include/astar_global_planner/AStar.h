@@ -32,17 +32,19 @@ namespace global_planner
          * @param startPos The start position
          * @param targetPos The target position
          * @param plan Found plan which is filled by planner (sent by reference)
+         * @param distanceOnly True means that you just want to calculate the distance and don't want to run local planning
          * @return True if a valid plan was found, false otherwise
          */
-        bool FindPath(navigation_msgs::Vector3 startPos, navigation_msgs::Vector3 targetPos, std::vector<navigation_msgs::Vector3>& plan);
+        bool FindPath(navigation_msgs::Vector3 startPos, navigation_msgs::Vector3 targetPos, std::vector<navigation_msgs::Vector3>& plan, bool distanceOnly);
 
         /**
          * @brief Reverse the path generated to begin from startPos
          * @param startNode Pointer to first node
          * @param targetNode Ponter to last node
+         * @param distanceOnly True means that you just want to calculate the distance and don't want to run local planning
          * @param plan Found plan which is filled by planner (sent by reference)
          */
-        void RetracePath(Node* startNode, Node* targetNode, std::vector<navigation_msgs::Vector3>& plan);
+        void RetracePath(Node* startNode, Node* targetNode, std::vector<navigation_msgs::Vector3>& plan, bool distanceOnly);
 
         /**
          * @brief Calculate the distance between two nodes
@@ -78,6 +80,7 @@ namespace global_planner
 
         navigation_msgs::Vector3 currentPos; /**<Current position of the robot (x, y, z). Updated using subscriber to odom topic */
         Grid grid; /**<Map array */
+        double distance; /**<Distance to target */
     };
 } // namespace global_planner
 

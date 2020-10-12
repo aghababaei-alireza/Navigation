@@ -22,9 +22,10 @@ namespace navigation_core{
          * @param startPos The start position
          * @param targetPos The target position
          * @param plan Found plan which is filled by planner (sent by reference)
+         * @param distanceOnly True means that you just want to calculate the distance and don't want to run local planning
          * @return True if a valid plan was found, false otherwise
          */
-        virtual bool FindPath(navigation_msgs::Vector3 startPos, navigation_msgs::Vector3 targetPos, std::vector<navigation_msgs::Vector3>& plan) = 0;
+        virtual bool FindPath(navigation_msgs::Vector3 startPos, navigation_msgs::Vector3 targetPos, std::vector<navigation_msgs::Vector3>& plan, bool distanceOnly) = 0;
 
         /**
          * @brief Global Planner Service Callback. Given a target position as a request, find an obstacle-free path to that target

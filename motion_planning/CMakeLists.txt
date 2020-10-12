@@ -149,6 +149,9 @@ target_link_libraries(GlobalPlanner ${PROJECT_NAME})
 add_executable(LocalPlanner src/LocalPlanner.cpp)
 target_link_libraries(LocalPlanner ${PROJECT_NAME})
 
+add_executable(tfTopicsSeparator src/tfTopicsSeparator.cpp)
+target_link_libraries(tfTopicsSeparator ${PROJECT_NAME})
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use

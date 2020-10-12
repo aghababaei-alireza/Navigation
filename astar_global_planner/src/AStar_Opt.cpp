@@ -23,13 +23,22 @@ namespace global_planner
     bool AStar::GlobalPlanCallback(navigation_msgs::GlobalTarget::Request& req, navigation_msgs::GlobalTarget::Response& resp){
         ros::spinOnce();
 
-        bool success = FindPath(currentPos, req.targetPos, grid.path);
+        bool success = FindPath(currentPos, req.targetPos, grid.path, req.distanceOnly);
         resp.success = success;
-        resp.plan = grid.path;
+        if (!req.distanceOnly)
+        {
+            resp.plan = grid.path;
+        }
+        else
+        {
+            resp.distance = distance;
+        }
+        
+        
         return success;
     }
 
-    bool AStar::FindPath(navigation_msgs::Vector3 startPos, navigation_msgs::Vector3 targetPos, std::vector<navigation_msgs::Vector3>& plan){
+    bool AStar::FindPath(navigation_msgs::Vector3 startPos, navigation_msgs::Vector3 targetPos, std::vector<navigation_msgs::Vector3>& plan, bool distanceOnly){
         _time = ros::Time::now();
         bool success = false;
 
@@ -56,7 +65,7 @@ namespace global_planner
             {
                 ROS_INFO("Reached the target. Retracing the path.");
                 success = true;
-                AStar::RetracePath(startNode, targetnode, grid.path);
+                AStar::RetracePath(startNode, targetnode, grid.path, distanceOnly);
                 return success;
             }
 
@@ -83,7 +92,7 @@ namespace global_planner
         return success;
     }
 
-    void AStar::RetracePath(Node* startNode, Node* targetNode, std::vector<navigation_msgs::Vector3>& plan){
+    void AStar::RetracePath(Node* startNode, Node* targetNode, std::vector<navigation_msgs::Vector3>& plan, bool distanceOnly){
         ros::Duration t = ros::Time::now() - _time;
         ROS_INFO("Find Path completed in %f seconds.", t.toSec());
         _time = ros::Time::now();
@@ -181,11 +190,24 @@ namespace global_planner
         plan.resize(simplified_path.size());
         plan = simplified_path;
 
-        navigation_msgs::LocalPosePlan msg;
-        msg.request.posePlan = plan;
-        localClient.call(msg);
-
-        //grid.SavePathToFile();
+        distance = 0.0;
+        if(distanceOnly){
+            navigation_msgs::Vector3 p1, p2;
+            p1 = plan[0];
+            for (std::vector<navigation_msgs::Vector3>::iterator it = plan.begin() + 1; it != plan.end(); it++)
+            {
+                p2 = *it;
+                distance += sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2) + pow(p1.z - p2.z, 2));
+                p1 = p2;
+            }
+            
+        }
+        else
+        {
+            navigation_msgs::LocalPosePlan msg;
+            msg.request.posePlan = plan;
+            localClient.call(msg);
+        }
     }
 
     double AStar::GetDistance(Node* nodeA, Node* nodeB){
