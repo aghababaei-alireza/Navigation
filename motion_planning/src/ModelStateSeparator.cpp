@@ -71,7 +71,7 @@ int main(int argc, char** argv) {
     ROS_INFO("Model State Separator initialized successfully.");
 
     stateSub = nh.subscribe("/gazebo/model_states", 100, Separator_Callback);
-    statePub = nh.advertise<gazebo_msgs::ModelState>("/Clients/model_state", 100);
+    statePub = nh.advertise<gazebo_msgs::ModelState>("/model_state", 100);
 
     ROS_INFO("Subscribed to /gazebo/model_states for model name : %s", model_name.c_str());
     ROS_INFO("Advertised Successfully to /ModelState");
