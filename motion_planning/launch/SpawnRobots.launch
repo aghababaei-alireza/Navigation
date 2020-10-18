@@ -23,7 +23,7 @@
     <arg name="debug" value="false"/>
   </include> -->
 
-  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model1).urdf.xacro" />
 
   <node name="spawn_urdf2" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg model_name1) -x $(arg x1) -y $(arg y1) -z $(arg z1) -Y $(arg Y1) -param robot_description" ns="$(arg model_name1)"/>
   
