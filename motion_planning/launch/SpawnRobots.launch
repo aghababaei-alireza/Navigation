@@ -1,12 +1,11 @@
 <launch>
-  <arg name="model1" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
   <arg name="x1" default="-1.0"/>
   <arg name="y1" default="1.0"/>
   <arg name="z1" default="0.0"/>
   <arg name="Y1" default="3.14"/>
   <arg name="model_name1" default="turtlebot3"/>
 
-  <arg name="model2" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
   <arg name="x2" default="-6.5"/>
   <arg name="y2" default="-2.0"/>
   <arg name="z2" default="0.0"/>
@@ -22,11 +21,11 @@
     <arg name="headless" value="false"/>
     <arg name="debug" value="false"/>
   </include> -->
+<group ns="$(arg model_name1)">
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
 
-  <param name="robot_description2" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model1).urdf.xacro" />
-
-  <node name="spawn_urdf2" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg model_name1) -x $(arg x1) -y $(arg y1) -z $(arg z1) -Y $(arg Y1) -param robot_description" ns="$(arg model_name1)"/>
-  
+  <node name="spawn_urdf2" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg model_name1) -x $(arg x1) -y $(arg y1) -z $(arg z1) -Y $(arg Y1) -param robot_description"/>
+</group>
   <!--
   <node name="spawn_urdf3" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg model_name2) -x $(arg x2) -y $(arg y2) -z $(arg z2) -Y $(arg Y2) -param robot_description" ns="$(arg model_name2)"/>
   -->
