@@ -10,6 +10,7 @@ project(motion_planning)
 find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   navigation_msgs
+  gazebo_msgs
   roscpp
   std_msgs
   tf
@@ -76,7 +77,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   geometry_msgs#   navigation_msgs#   std_msgs
+#   geometry_msgs#   navigation_msgs#   std_msgs 
 # )
 
 ################################################
@@ -111,7 +112,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
    INCLUDE_DIRS include
    LIBRARIES ${PROJECT_NAME}
-   CATKIN_DEPENDS geometry_msgs navigation_msgs roscpp std_msgs tf nav_msgs astar_global_planner vfh_local_planner dwa__local_planner
+   CATKIN_DEPENDS geometry_msgs navigation_msgs roscpp std_msgs tf nav_msgs astar_global_planner vfh_local_planner dwa__local_planner gazebo_msgs
 #  DEPENDS system_lib
 )
 
@@ -151,6 +152,12 @@ target_link_libraries(LocalPlanner ${PROJECT_NAME})
 
 add_executable(tfTopicsSeparator src/tfTopicsSeparator.cpp)
 target_link_libraries(tfTopicsSeparator ${PROJECT_NAME})
+
+add_executable(ModelStateSeparator src/ModelStateSeparator.cpp)
+target_link_libraries(ModelStateSeparator ${PROJECT_NAME})
+
+add_executable(ModelStatePublisher src/ModelStatePublisher.cpp)
+target_link_libraries(ModelStatePublisher ${PROJECT_NAME})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
