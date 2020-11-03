@@ -9,12 +9,6 @@
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "LocalPlanner", ros::init_options::AnonymousName);
-    ros::NodeHandle nh;
-    ros::NodeHandle private_nh("~");
-
-    ROS_INFO("Node %s Started.", ros::this_node::getName().c_str());
-
     std::string _namespace = "";
 
     for (int i = 1; i < argc; i++)
@@ -36,6 +30,12 @@ int main(int argc, char** argv)
             }
         }
     }
+
+    ros::init(argc, argv, "LocalPlanner", ros::init_options::AnonymousName);
+    ros::NodeHandle nh;
+    ros::NodeHandle private_nh("~");
+
+    ROS_INFO("Node %s Started.", ros::this_node::getName().c_str());
 
     std::string planningMethod;
     private_nh.param("LocalPlanningMethod", planningMethod, std::string("vfh"));

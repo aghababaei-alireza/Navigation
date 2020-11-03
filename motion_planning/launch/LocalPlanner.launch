@@ -5,7 +5,7 @@
     <arg name = "Namespace" default = ""/>
 
     <!-- Local Planner Node -->
-    <node pkg = "motion_planning" type = "LocalPlanner" name = "LocalPlanner" respawn = "false" output = "screen" args="-n $(arg Namespace)">
+    <node pkg = "motion_planning" type = "LocalPlanner" name = "$(anon LocalPlanner)" respawn = "false" output = "screen" args="-n $(arg Namespace)">
         <param name = "LocalPlanningMethod" value = "$(arg LocalPlanningMethod)"/>
         <rosparam file = "$(find motion_planning)/param/names.yaml" command = "load"/>
         <rosparam file = "$(find motion_planning)/param/RobotParam.yaml" command = "load"/>

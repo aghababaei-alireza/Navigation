@@ -18,13 +18,8 @@ void MapCallback(nav_msgs::OccupancyGrid msg){
               "  GlobalPlanner -h\n"\
               "  GlobalPlanner [-n|--namespace <robot_namespace>]"
 
-int main(int argc, char** argv){
-    ros::init(argc, argv, "GlobalPlanner", ros::init_options::AnonymousName);
-    ros::NodeHandle nh;
-    ros::NodeHandle private_nh("~");
-
-    ROS_INFO("Node %s Started.", ros::this_node::getName().c_str());
-
+int main(int argc, char** argv)
+{
     std::string _namespace = "";
 
     for (int i = 1; i < argc; i++)
@@ -46,6 +41,13 @@ int main(int argc, char** argv){
             }
         }
     }
+
+    ros::init(argc, argv, _namespace + "/GlobalPlanner", ros::init_options::AnonymousName);
+    ros::NodeHandle nh;
+    ros::NodeHandle private_nh("~");
+
+    ROS_INFO("Node %s Started.", ros::this_node::getName().c_str());
+
     
 
     std::string mapTopic;
