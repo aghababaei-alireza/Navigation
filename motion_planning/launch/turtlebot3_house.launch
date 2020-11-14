@@ -5,9 +5,13 @@
   <arg name="z_pos" default="0.0"/>
   <arg name="yaw" default="0.0"/>
   <arg name="model_name" default="turtlebot3"/>
+  <arg name="world_file" default="$(find motion_planning)/worlds/Warehouse.world"/>
+  <arg name="sdf_file" default="$(find motion_planning)/models/warehouse_robot_ariac/model.sdf"/>
+
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_house.world"/>
+    <!-- <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_house.world"/> -->
+    <arg name="world_name" value="$(arg world_file)"/>
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>
@@ -19,5 +23,6 @@
     <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
 
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg model_name) -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -Y $(arg yaw) -param robot_description" />
+    <!-- <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-sdf -model $(arg model_name) -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -Y $(arg yaw) -file $(arg sdf_file)" /> -->
   
 </launch>
