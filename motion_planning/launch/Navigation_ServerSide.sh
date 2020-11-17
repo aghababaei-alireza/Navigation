@@ -22,12 +22,6 @@ read enter
 
 rosrun motion_planning ModelStatePublisher &
 
-echo "Please hit ENTER to run Docker."
-read enter
-
-cd ~/crossbar-examples/getting-started/
-sudo docker run -v  $PWD:/node -u 0 --rm --name=crossbar -it -p 8080:8080 crossbario/crossbar &
-
 echo "Please hit ENTER to run ROSConnect serverSide."
 read enter
 read enter
