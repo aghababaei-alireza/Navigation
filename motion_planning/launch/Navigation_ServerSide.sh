@@ -30,5 +30,6 @@ sudo docker run -v  $PWD:/node -u 0 --rm --name=crossbar -it -p 8080:8080 crossb
 
 echo "Please hit ENTER to run ROSConnect serverSide."
 read enter
+read enter
 
 roslaunch ros_web_client serverside.launch
