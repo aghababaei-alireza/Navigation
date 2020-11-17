@@ -26,3 +26,4 @@ echo "Please hit ENTER to run ROSConnect clientSide."
 read enter
 
 roslaunch ros_web_client clientside.launch url:="ws://192.168.18.139:8080/ws"
+
