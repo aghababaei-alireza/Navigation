@@ -24,7 +24,6 @@ rosrun motion_planning ModelStatePublisher &
 
 echo "Please hit ENTER to run ROSConnect serverSide."
 read enter
-read enter
 
 roslaunch ros_web_client serverside.launch
 
